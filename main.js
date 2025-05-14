@@ -20,10 +20,11 @@ const createWindow = () => {
       webSecurity: false, // 禁用web安全策略
       allowRunningInsecureContent: true, // 允许运行不安全的内容
       // 使用预加载脚本
-      preload: path.join(__dirname, './preload/index.js'), 
+      preload: app.isPackaged 
+        ? path.join(process.resourcesPath, 'preload/index.js') : path.join(__dirname, './preload/index.js'), 
       // 启用node集成
       nodeIntegration: false,
-      // 启用上下文隔离
+      // 启用上下文隔离 
       contextIsolation: true,
     },
   });
