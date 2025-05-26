@@ -30,10 +30,20 @@ const createWindow = () => {
   });
 
 
-  // and load the index.html of the app.
-  win.loadURL('http://localhost:5173/');
-  // 自动打开开发者工具
-  win.webContents.openDevTools();
+  // // and load the index.html of the app.
+  // win.loadURL('http://localhost:5173/');
+  // // 自动打开开发者工具
+  // win.webContents.openDevTools();// 开发环境与生产环境区分加载
+  if (!app.isPackaged) {
+    win.loadURL('http://localhost:5173');
+    win.webContents.openDevTools();
+  } else {
+    // 方法一
+    win.loadFile(path.join(process.resourcesPath, 'dist/index.html'));
+    // 方法二
+    // win.loadFile(path.join(process.resourcesPath, 'app', 'dist', 'index.html'));
+    win.webContents.openDevTools();
+  }
   winState.manage(win);
 };
 app.whenReady().then(()=>{

@@ -1,14 +1,15 @@
 {
-  "name": "readit",
+  "name": "musicplayer",
   "private": true,
-  "version": "0.0.0",
+  "author": "Your Name <Leezhenwang>",
+  "version": "0.0.1",
   "type": "module",
   "main": "main.js",
   "build": {
     "appId": "com.yourcompany.musicplayer",
     "productName": "Music Player",
     "directories": {
-      "output": "dist/installers"
+      "output": "installers"
     },
     "files": [
       "dist/**/*",
@@ -19,7 +20,15 @@
       "target": "nsis",
       "icon": "build/icons/icon.ico"
     },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": true,
+      "createDesktopShortcut": true,
+      "menuCategory": true 
+    },
     "extraResources": [
+      "dist/**/*",
       "preload/**/*"
     ]
   },
